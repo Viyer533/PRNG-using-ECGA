@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ecga-prng"
+version = "0.1.0"
+description = "A novel pseudo-random number generator based on multivariable optimization for image-cryptographic applications"
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+numpy = ">=1.26.1"
+pillow = ">=10.0.0,<=10.2.0"
+mod = "^0.3.0"
+sympy = "^1.12"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
