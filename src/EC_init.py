@@ -1,4 +1,3 @@
-from mod import Mod
 from utils import get_params
 from sympy import mod_inverse, Symbol
 
@@ -10,7 +9,7 @@ class EC:
     # def EC_check(self, x, y):
     #     return y**2 == ((x**3 + self.a * x + self.b) % self.p)
 
-    def EC_double(self, G):
+    def ec_double(self, G):
         x1, y1 = G
         s1 = 2 * y1
         denom = mod_inverse(s1, self.p)
@@ -19,8 +18,8 @@ class EC:
 
         return lambda_
     
-    def EC_add(self, G0):
-        lambda_ = self.EC_double(G0)
+    def ec_add(self, G0):
+        lambda_ = self.ec_double(G0)
         x1, y1 = G0
         s1 = lambda_**2
         s2 = 2 * x1
@@ -35,7 +34,7 @@ class EC:
         gen_points_arr = []
         G0 = self.G0
         for i in range(0,n):
-            G0 = self.EC_add(G0)
+            G0 = self.ec_add(G0)
             gen_points_arr.append(G0)
         return gen_points_arr
 

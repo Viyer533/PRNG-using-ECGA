@@ -7,10 +7,9 @@ class Bin:
     def __init__(self):
         self.params = get_params()
 
-    def SHA_256 (self):
+    def sha_256 (self):
         hash_arr = []
-        
-        fname = f"Images/{self.params["img"]}"
+        fname = f"../Images/{self.params['img']}"
         with open(fname,"rb") as f:
             img_info = f.read() # read entire file as bytes
             readable_hash = sha256(img_info).hexdigest()
@@ -24,4 +23,4 @@ class Bin:
         return hash_arr
 
 b = Bin()
-print(b.SHA_256())
+print(b.sha_256())
