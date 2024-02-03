@@ -3,6 +3,7 @@ import numpy as np
 from hashlib import sha256
 from utils import get_params
 from bitstring import BitArray
+import os
 
 
 class Bin:
@@ -11,7 +12,8 @@ class Bin:
 
     def sha_256(self):
         hash_arr = []
-        fname = f"../Images/{self.params['img']}"
+        file_prefix = '../Images' if os.name == 'posix' else './Images'
+        fname = f'{file_prefix}/{self.params["img"]}'
         with open(fname, "rb") as f:
             img_info = f.read()  # read entire file as bytes
             hash_hex = f'0x{sha256(img_info).hexdigest()}'
