@@ -12,5 +12,3 @@ def concat_bits(self, bit_vec_x: BitArray, bit_vec_y: BitArray) -> BitArray:
     bit_vec_x.append(bit_vec_y)
     return bit_vec_x
 
-print(b.merge_bits(BitArray(hex='0xc8'),'a','b'))
-print(b.concat_bits(BitArray(hex = '0xc8'), BitArray(hex = '0xd9')))
