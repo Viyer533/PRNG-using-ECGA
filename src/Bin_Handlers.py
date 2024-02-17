@@ -1,6 +1,7 @@
 from utils import get_params, convert_to_bin
 from bitstring import BitArray
 from Hash import Bin
+import numpy as np
 
 
 def merge_bits(bit_vec: BitArray, b1:BitArray, b2:BitArray) -> BitArray:
