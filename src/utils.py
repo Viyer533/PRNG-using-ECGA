@@ -17,3 +17,6 @@ def convert_to_bin(src: str, base: int = 2) -> BitArray:
     hex_representation = hex(int(src, base))
     bitarray = BitArray(hex=hex_representation)
     return bitarray
+
+print(convert_to_bin('200', 10))
+
