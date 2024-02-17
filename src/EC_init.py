@@ -41,8 +41,8 @@ class EC:
 
     # Add code for binary ops on gen_points_arr
 
-
-inp = get_params()
-ec = EC()
-gen_points = ec.gen_points(5)
-print(gen_points)
+if __name__ == '__main__':
+    inp = get_params()
+    ec = EC()
+    gen_points = ec.gen_points(5)
+    print(gen_points)
