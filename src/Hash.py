@@ -6,7 +6,8 @@ from bitstring import BitArray
 import os
 
 
-class Bin:
+class Hash:
+    
     def __init__(self):
         self.params = get_params()
 
@@ -26,5 +27,3 @@ class Bin:
             hash_dict[k] = BitArray(hex=hash_hex)
         return hash_dict
       
-b = Bin()
-print(b.sha_256())
