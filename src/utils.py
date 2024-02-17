@@ -1,9 +1,13 @@
 from bitstring import BitArray
+import numpy as np
 
 
 def get_params():
     im = "4.2.03.tiff"
     # p = 23
+    aa = 25
+    bb = 73
+    cc = 121
     p = 115792089210356248762697446949407573530086143415290314195533631308867097853951
     a = 115792089210356248762697446949407573530086143415290314195533631308867097853948
     b = 41058363725152142129326129780047268409114441015993725554835256314039467401291
@@ -17,6 +21,9 @@ def convert_to_bin(src: str, base: int = 2) -> BitArray:
     hex_representation = hex(int(src, base))
     bitarray = BitArray(hex=hex_representation)
     return bitarray
+
+def convert_to_decimal(bitarray: np.ndarray) -> int:
+    return np.packbits(bitarray)
 
 if __name__ == '__main__':
     print(convert_to_bin('200', 10))
