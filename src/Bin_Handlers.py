@@ -29,37 +29,50 @@ def concat_bits(bit_vec_x: BitArray, bit_vec_y: BitArray) -> BitArray:
 
 def bitmasking(input_bitarray: BitArray) -> BitArray:
     bitarray_length = len(input_bitarray)
-    rand_b = np.mod(np.reshape(np.random.permutation(1 * bitarray_length), (1, bitarray_length)), 2).flatten()
-    result_bitarray = BitArray(uint=input_bitarray.uint ^ int(''.join(map(str, rand_b)), 2), length=bitarray_length)
+    rand_b = np.mod(
+        np.reshape(np.random.permutation(1 * bitarray_length), (1, bitarray_length)), 2
+    ).flatten()
+    result_bitarray = BitArray(
+        uint=input_bitarray.uint ^ int("".join(map(str, rand_b)), 2),
+        length=bitarray_length,
+    )
     return result_bitarray
 
 
-def initial_prng(input_bitarray: BitArray) -> np.ndarray:
+def initial_prng(input_bitarray: BitArray, m: int = 8) -> np.ndarray:
     l1 = len(input_bitarray)
-    l2 = l1 % 8
+    l2 = l1 % m
     l3 = l1 - l2
 
     result_bitarray = input_bitarray[:l3]
-    reshaped_bitarray = np.reshape(result_bitarray, (8, -1))
-    result_decimals = np.apply_along_axis(convert_to_decimal, 0, reshaped_bitarray)
+    reshaped_bitarray = np.reshape(result_bitarray, (m, -1))
+    result_decimals = np.apply_along_axis(
+        convert_to_decimal, 0, reshaped_bitarray
+    ).flatten()
 
     return result_decimals
 
 
-def prng_sequence(seq: np.ndarray, upper_phi: int, psi: int, lower_phi: int, m: int = 8) -> np.ndarray:
+def prng_sequence(
+    seq: np.ndarray, upper_phi: int, psi: int, lower_phi: int, m: int = 8
+) -> np.ndarray:
     final_seq_len = len(seq) - 1
     final_seq = np.empty(final_seq_len)
     for idx in range(final_seq_len):
-        final_seq[idx] = (upper_phi * seq[idx] + psi * seq[idx + 1] + lower_phi) % (2 ** m)
+        final_seq[idx] = (upper_phi * seq[idx] + psi * seq[idx + 1] + lower_phi) % (
+            2**m
+        )
     return final_seq
 
 
-if __name__ == '__main__':
-    input_bitarray = BitArray(bin='110010100100011110101010111010110001010101010100010')
+if __name__ == "__main__":
+    input_bitarray = BitArray(bin="110010100100011110101010111010110001010101010100010")
     result = initial_prng(bitmasking(input_bitarray))
     print(result)
-    upper_phi, lower_phi, psi = get_params()['upper_phi'], get_params()['lower_phi'], get_params()['psi']
-    res = prng_sequence(result[0], upper_phi, psi ,lower_phi)
+    upper_phi, lower_phi, psi = (
+        get_params()["upper_phi"],
+        get_params()["lower_phi"],
+        get_params()["psi"],
+    )
+    res = prng_sequence(result, upper_phi, psi, lower_phi)
     print(res)
-    # res = merge_bits(BitArray(bin = '1010101'), BitArray(bin = '110101011'), BitArray(bin = '101010110'))
-    # print(res.bin)

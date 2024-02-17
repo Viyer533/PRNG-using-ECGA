@@ -14,11 +14,22 @@ def get_params():
     x0 = 48439561293906451759052585252797914202762949526041747995844080717082404635286
     y0 = 36134250956749795798585127919587881956611106672985015071877198253568414405109
     G0 = (x0, y0)
-    return {"img": im, "p": p, "a": a, 'b': b, "G0": G0, "upper_phi": upper_phi, "psi": psi, "lower_phi": lower_phi}
+    n = 5
+    return {
+        "img": im,
+        "p": p,
+        "a": a,
+        "b": b,
+        "G0": G0,
+        "n": n,
+        "upper_phi": upper_phi,
+        "psi": psi,
+        "lower_phi": lower_phi,
+    }
 
 
-def convert_to_bin(src: str, base: int = 2) -> BitArray:
-    hex_representation = hex(int(src, base))
+def convert_to_bin(src: int, base: int = 2) -> BitArray:
+    hex_representation = hex(src)
     bitarray = BitArray(hex=hex_representation)
     return bitarray
 
@@ -27,5 +38,5 @@ def convert_to_decimal(bitarray: np.ndarray) -> int:
     return np.packbits(bitarray)
 
 
-if __name__ == '__main__':
-    print(convert_to_bin('200', 10))
+if __name__ == "__main__":
+    print(convert_to_bin("200", 10))
