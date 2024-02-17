@@ -18,4 +18,6 @@ def convert_to_bin(src: str, base: int = 2) -> BitArray:
     bitarray = BitArray(hex=hex_representation)
     return bitarray
 
+if __name__ == '__main__':
+    print(convert_to_bin('200', 10))
 
