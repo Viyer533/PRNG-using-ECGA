@@ -9,13 +9,13 @@ from Bin_Handlers import (
     initial_prng,
     prng_sequence,
 )
+from Optimisation import optimisation
 
 params = get_params()
 ec = EC()
 hash = Hash()
 points_arr = []
 points_arr = ec.gen_points(params["n"])
-# print(points_arr)
 hash_dict = hash.sha_256()
 i_prns = np.array([])
 
@@ -36,6 +36,7 @@ for G in points_arr:
         ]
     )
 
+
 if __name__ == "__main__":
     print(i_prns)
-    print(len(i_prns))
+    print(optimisation(i_prns))
