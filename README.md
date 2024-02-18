@@ -10,3 +10,8 @@ optimization for image-cryptographic applications](https://www.sciencedirect.com
 ```bash
 poetry install
 ```
+2. Run `src/main.py` to generate the PRNS
+
+```bash
+poetry run main.py
+```
