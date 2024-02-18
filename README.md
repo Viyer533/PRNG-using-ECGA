@@ -13,5 +13,5 @@ poetry install
 2. Run `src/main.py` to generate the PRNS
 
 ```bash
-poetry run main.py
+poetry run python main.py
 ```
