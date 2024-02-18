@@ -1,65 +1,66 @@
 import numpy as np
-def entropy(X):
-    
+from typing import Tuple
+
+
+def entropy(X: np.ndarray) -> Tuple[float, float]:
     alphabet = np.unique(X)
     frequency = np.zeros_like(alphabet)
     frequency = [np.sum(X == alphabet[symbol]) for symbol in range(len(alphabet))]
     P = frequency / np.sum(frequency)
-    H = -np.sum(P * np.log2(P))
-    UB = np.log2(len(alphabet))
+    entropy_value = -np.sum(P * np.log2(P))
+    upper_bound = np.log2(len(alphabet))
 
-    return H, UB
+    return entropy_value, upper_bound
 
-def seqperiod(W):
+
+def seqperiod(i_prns: np.ndarray) -> int:
     periods = []
-    n = len(W)
+    n = len(i_prns)
 
     for p in range(1, n + 1):
         if n % p == 0:
-            is_periodic = all(W[i] == W[i % p] for i in range(n))
+            is_periodic = all(i_prns[i] == i_prns[i % p] for i in range(n))
             if is_periodic:
                 periods.append(p)
 
     return min(periods)
 
-def optimisation(R_Decimal):
-    W = R_Decimal
 
-    i = 0
+def optimisation(i_prns: np.ndarray) -> np.ndarray:
+    iters = 0
     while True:
-        i+=1
-        H_1, _ = entropy(W)
-        P_1 = seqperiod(W)
+        iters += 1
+        initial_entropy, _ = entropy(i_prns)
+        intial_period = seqperiod(i_prns)
 
-        if abs(H_1 - 8) <= 0.05 and P_1 == len(W):
+        if abs(initial_entropy - 8) <= 0.05 and intial_period == len(i_prns):
             break
 
-        r_1 = np.random.permutation(len(W))[:256]
-        P_e = np.random.permutation(256)[:256]
-        P_e = P_e % 256
-        W_crossover = W.copy()
-        W_crossover[r_1] = P_e
+        rand_indices = np.random.permutation(len(i_prns))[:256]
+        rand_selection = np.random.permutation(256)[:256]
+        cross_prns = i_prns.copy()
+        cross_prns[rand_indices] = rand_selection
 
-        H_2, _ = entropy(W_crossover)
-        P_2 = seqperiod(W_crossover)
+        cross_entropy, _ = entropy(cross_prns)
+        cross_period = seqperiod(cross_prns)
 
-        if P_2 >= P_1 and H_2 >= H_1:
-            I_mutation = W_crossover
+        if cross_period >= intial_period and cross_entropy >= initial_entropy:
+            temp_mutation = cross_prns
         else:
-            I_mutation = W
+            temp_mutation = i_prns
 
-        r_2 = np.random.permutation(len(W))[:2]
-        W_mutation = I_mutation.copy()
-        W_mutation[r_2[0]], W_mutation[r_2[1]] = W_mutation[r_2[1]], W_mutation[r_2[0]]
+        rand_swap_indices = np.random.permutation(len(i_prns))[:2]
+        mutation_prns = temp_mutation.copy()
+        mutation_prns[rand_swap_indices[0]], mutation_prns[rand_swap_indices[1]] = (
+            mutation_prns[rand_swap_indices[1]],
+            mutation_prns[rand_swap_indices[0]],
+        )
 
-        if seqperiod(W_mutation) >= seqperiod(I_mutation):
-            W_output = W_mutation
+        if seqperiod(mutation_prns) >= seqperiod(temp_mutation):
+            prns_output = mutation_prns
         else:
-            W_output = I_mutation
+            prns_output = temp_mutation
 
-        W = W_output
+        i_prns = prns_output
 
-    R_Opt = W
-    print(entropy(R_Decimal)[0],seqperiod(R_Decimal))
-    print(entropy(R_Opt)[0],seqperiod(R_Opt))
-    return R_Opt
+    return i_prns
