@@ -1,7 +1,5 @@
-from PIL import Image
-import numpy as np
 from hashlib import sha256
-from utils import get_params, convert_to_bin
+from utils import get_params
 from bitstring import BitArray
 import os
 

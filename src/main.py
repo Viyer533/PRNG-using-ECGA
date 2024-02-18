@@ -13,10 +13,9 @@ from Optimisation import optimisation
 
 params = get_params()
 ec = EC()
-hash = Hash()
-points_arr = []
+hash_handler = Hash()
 points_arr = ec.gen_points(params["n"])
-hash_dict = hash.sha_256()
+hash_dict = hash_handler.sha_256()
 i_prns = np.array([])
 
 for G in points_arr:

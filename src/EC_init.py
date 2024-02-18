@@ -1,5 +1,5 @@
 from utils import get_params
-from sympy import mod_inverse, Symbol
+from sympy import mod_inverse
 
 
 class EC:

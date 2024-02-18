@@ -2,12 +2,12 @@ import numpy as np
 from typing import Tuple
 
 
-def entropy(X: np.ndarray) -> Tuple[float, float]:
-    alphabet = np.unique(X)
+def entropy(input_seq: np.ndarray) -> Tuple[float, float]:
+    alphabet = np.unique(input_seq)
     frequency = np.zeros_like(alphabet)
-    frequency = [np.sum(X == alphabet[symbol]) for symbol in range(len(alphabet))]
-    P = frequency / np.sum(frequency)
-    entropy_value = -np.sum(P * np.log2(P))
+    frequency = [np.sum(input_seq == alphabet[symbol]) for symbol in range(len(alphabet))]
+    probability = frequency / np.sum(frequency)
+    entropy_value = -np.sum(probability * np.log2(probability))
     upper_bound = np.log2(len(alphabet))
 
     return entropy_value, upper_bound

@@ -1,4 +1,4 @@
-from utils import get_params, convert_to_bin, convert_to_decimal
+from utils import get_params, convert_to_decimal
 from bitstring import BitArray
 import numpy as np
 
