@@ -13,6 +13,8 @@ pillow = ">=10.0.0,<=10.2.0"
 mod = "^0.3.0"
 sympy = "^1.12"
 bitstring = "^4.1.4"
+nistrng = "^1.2.3"
+
 
 [build-system]
 requires = ["poetry-core"]

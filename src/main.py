@@ -38,4 +38,6 @@ for G in points_arr:
 
 if __name__ == "__main__":
     print(i_prns)
-    print(optimisation(i_prns))
+    o_prns = optimisation(i_prns)
+    print(o_prns)
+    # np.save('Optimized_PRNS.npy', o_prns)
