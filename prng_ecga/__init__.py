@@ -1,1 +1,1 @@
-# from prng_ecga. import main #as PRNS_GENERATOR
+from . import main #as PRNS_GENERATOR
