@@ -1,6 +1,6 @@
-from utils import get_params, convert_to_decimal
 from bitstring import BitArray
 import numpy as np
+from .utils import get_params, convert_to_decimal
 
 
 def merge_bits(bit_vec: BitArray, b1: BitArray, b2: BitArray) -> BitArray:

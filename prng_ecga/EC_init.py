@@ -1,6 +1,5 @@
-from utils import get_params
 from sympy import mod_inverse
-
+from .utils import get_params
 
 class EC:
     def __init__(self):
