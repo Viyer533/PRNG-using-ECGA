@@ -1,6 +1,6 @@
 from bitstring import BitArray
 import numpy as np
-from .config import config
+from prng_ecga.config import config
 
 def get_params():
     G0 = (config["x0"], config["y0"])

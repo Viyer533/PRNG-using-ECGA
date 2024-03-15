@@ -2,7 +2,7 @@ from hashlib import sha256
 from bitstring import BitArray
 from PIL import Image
 import os
-from .utils import get_params
+from prng_ecga.utils import get_params
 
 
 class Hash:

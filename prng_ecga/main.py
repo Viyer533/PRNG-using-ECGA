@@ -1,16 +1,16 @@
 import numpy as np
-from .EC_init import EC
-from .Hash import Hash
-from .utils import get_params, convert_to_bin
-from .Bin_Handlers import (
+from prng_ecga.EC_init import EC
+from prng_ecga.Hash import Hash
+from prng_ecga.utils import get_params, convert_to_bin
+from prng_ecga.Bin_Handlers import (
     merge_bits,
     concat_bits,
     bitmasking,
     initial_prng,
     prng_sequence,
 )
-from .Optimisation import optimisation
-from .config import update_config
+from prng_ecga.Optimisation import optimisation
+from prng_ecga.config import update_config
 
 
 def generate(configuration = None):
