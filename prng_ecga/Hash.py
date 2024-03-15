@@ -12,8 +12,9 @@ class Hash:
 
     def sha_256(self):
         hash_dict = {}
-        file_prefix = "../Images" if os.name == "posix" else "./Images"
-        fname = f'{file_prefix}/{self.params["img"]}'
+        # file_prefix = "../Images" if os.name == "posix" else "./Images"
+        # fname = f'{file_prefix}/{self.params["img"]}'
+        fname = f'{self.params["img"]}'
         
         with open(fname, "rb") as f:
             img_info = f.read()

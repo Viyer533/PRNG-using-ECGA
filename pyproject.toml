@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ecga-prng"
+name = "prng-ecga"
 version = "0.1.0"
 description = "A novel pseudo-random number generator based on multivariable optimization for image-cryptographic applications"
 authors = ["Your Name <you@example.com>"]
