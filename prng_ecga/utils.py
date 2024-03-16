@@ -14,6 +14,7 @@ def get_params():
         "upper_phi": config["upper_phi"],
         "psi": config["psi"],
         "lower_phi": config["lower_phi"],
+        "m" : config["m"],
     }
 
 def convert_to_bin(src: int, base: int = 2) -> BitArray:

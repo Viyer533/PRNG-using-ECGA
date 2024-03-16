@@ -26,18 +26,18 @@ def seqperiod(i_prns: np.ndarray) -> int:
     return min(periods)
 
 
-def optimisation(i_prns: np.ndarray) -> np.ndarray:
+def optimisation(i_prns: np.ndarray, m: int) -> np.ndarray:
     iters = 0
     while True:
         iters += 1
-        initial_entropy, _ = entropy(i_prns)
+        initial_entropy, upper_bound = entropy(i_prns)
         intial_period = seqperiod(i_prns)
 
-        if abs(initial_entropy - 8) <= 0.05 and intial_period == len(i_prns):
+        if abs(initial_entropy - upper_bound) <= 0.05 and intial_period == len(i_prns):
             break
 
         rand_indices = np.random.permutation(len(i_prns))[:256]
-        rand_selection = np.random.permutation(256)[:256]
+        rand_selection = np.random.permutation(2**m)[:256]
         cross_prns = i_prns.copy()
         cross_prns[rand_indices] = rand_selection
 

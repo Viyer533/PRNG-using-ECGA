@@ -30,23 +30,24 @@ def generate(configuration = None):
         bin_y_merged = merge_bits(hash_dict["img"], bin_y, hash_dict["p"])
         bin_xy = concat_bits(bin_x_merged, bin_y_merged)
         bin_xyz = bitmasking(bin_xy)
-        bin_dec_arr = initial_prng(bin_xyz)
+        bin_dec_arr = initial_prng(bin_xyz, params["m"])
         i_prns = np.concatenate(
             [
                 i_prns,
                 prng_sequence(
-                    bin_dec_arr, params["upper_phi"], params["psi"], params["lower_phi"]
+                    bin_dec_arr, params["upper_phi"], params["psi"], params["lower_phi"], params["m"]
                 ),
             ]
         )
-    return i_prns
+    return np.array(i_prns, dtype = 'int')
 
 def optimize(i_prns):
-    return optimisation(i_prns)
+    return optimisation(i_prns, get_params()['m'])
 
 
 if __name__ == "__main__":
     i_prns = generate()
+    print(i_prns)
     o_prns = optimize(i_prns)
     print(o_prns)
-    # np.save('Optimized_PRNS.npy', o_prns)
+    np.save('Optimized_PRNS.npy', o_prns)

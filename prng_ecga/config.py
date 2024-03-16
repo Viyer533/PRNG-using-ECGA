@@ -9,6 +9,7 @@ config = {
     "upper_phi": 25,
     "psi": 73,
     "lower_phi": 121,
+    "m" : 16,
 }
 
 def update_config(new_settings):
