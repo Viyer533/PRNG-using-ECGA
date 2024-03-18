@@ -24,7 +24,7 @@ def convert_to_bin(src: int, base: int = 2) -> BitArray:
 
 
 def convert_to_decimal(bitarray: np.ndarray) -> int:
-    return np.packbits(bitarray)
+    return abs(int.from_bytes(np.packbits(bitarray), byteorder="big"))
 
 
 if __name__ == "__main__":

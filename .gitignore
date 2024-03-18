@@ -1,4 +1,5 @@
 *.tiff
+/Images/
 __pycache__/
 .venv/
 *.npy
